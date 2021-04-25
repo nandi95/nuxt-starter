@@ -33,12 +33,6 @@ module.exports = {
         extend: {
             colors: {
                 ...brandColors([50, 100, 200, 300, 400, 500, 600, 700, 800, 900])
-            },
-            transitionProperty: {
-                'spacing': 'margin, padding'
-            },
-            rotate: {
-                '270': '270deg',
             }
         }
     }

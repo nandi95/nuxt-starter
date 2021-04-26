@@ -10,16 +10,12 @@
         "lint:js": "eslint . --fix --ext .ts,.vue,.tsx",
         "lint:style": "stylelint --fix \"**/*.{vue,css,scss}\"",
         "lint": "npm run lint:js && npm run lint:style",
-        "test:e2e": "wdio run wdio.config.ts"
+        "test:e2e": "wdio run wdio.config.ts",
+        "prepare": "husky install"
     },
     "lint-staged": {
         "*.{ts,tsx,vue}": "eslint",
         "*.{css,vue,scss}": "stylelint"
-    },
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
     },
     "dependencies": {
         "@nuxtjs/composition-api": "^0.23.2",
@@ -48,7 +44,7 @@
         "eslint-plugin-vue": "^7.7.0",
         "eslint-plugin-wdio": "^7.0.0",
         "fibers": "^5.0.0",
-        "husky": "^4.3.8",
+        "husky": "^6.0.0",
         "lint-staged": "^10.5.4",
         "postcss": "^8.2.8",
         "sass": "^1.32.11",

@@ -6,6 +6,9 @@
 # install dependencies
 $ npm install
 
+# If using gitkraken run
+$ rm -rf .git/hooks && ln -s ../.husky .git/hooks
+
 # serve with hot reload at localhost:3000
 $ npm run dev
 

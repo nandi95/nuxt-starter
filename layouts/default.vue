@@ -1,17 +1,14 @@
 <template>
     <div>
-        <Navbar />
         <Nuxt />
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
-import Navbar from '@/components/Navbar';
 
 export default defineComponent({
-    name: 'Default',
-    components: { Navbar }
+    name: 'Default'
 });
 </script>
 

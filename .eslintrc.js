@@ -2,15 +2,16 @@ module.exports = {
     root: true,
     env: {
         browser: true,
-        node: true
+        node: true,
+        "cypress/globals": true
     },
     extends: [
         '@nuxtjs/eslint-config-typescript',
-        'plugin:wdio/recommended',
+        'plugin:cypress/recommended',
         'plugin:nuxt/recommended'
     ],
     plugins: [
-        'wdio'
+        'cypress'
     ],
     parserOptions: {
         ecmaVersion: 2020,
@@ -130,5 +131,7 @@ module.exports = {
         }],
         'vue/no-v-html': 'off',
         'vue/require-default-prop': 'off',
+
+        // https://github.com/cypress-io/eslint-plugin-cypress#rules
     }
 }

@@ -6,7 +6,7 @@
 # install dependencies
 $ npm install
 
-# If using gitkraken run
+# If using gitkraken run https://github.com/typicode/husky/issues/875
 $ rm -rf .git/hooks && ln -s ../.husky .git/hooks
 
 # serve with hot reload at localhost:3000

@@ -19,11 +19,7 @@
         },
         "types": [
             "@nuxt/types",
-            "@wdio/types",
-            "webdriverio/async",
-            "@wdio/mocha-framework",
-            "expect-webdriverio",
-            "@wdio/selenium-standalone-service"
+            "cypress"
         ]
     },
     "exclude": [

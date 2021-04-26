@@ -10,7 +10,9 @@
         "lint:js": "eslint . --fix --ext .ts,.vue,.tsx",
         "lint:style": "stylelint --fix \"**/*.{vue,css,scss}\"",
         "lint": "npm run lint:js && npm run lint:style",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "cy:open": "cypress open",
+        "cy:run": "cypress run"
     },
     "lint-staged": {
         "*.{ts,tsx,vue}": "eslint",
@@ -20,7 +22,6 @@
         "@nuxtjs/composition-api": "^0.23.2",
         "@nuxtjs/pwa": "^3.3.5",
         "@nuxtjs/sitemap": "^2.4.0",
-        "@upfrontjs/framework": "^0.1.2",
         "core-js": "^3.9.1",
         "nuxt": "^2.15.3"
     },
@@ -33,7 +34,9 @@
         "@nuxtjs/tailwindcss": "^4.0.1",
         "@types/tailwindcss": "^2.0.2",
         "babel-eslint": "^10.1.0",
+        "cypress": "^7.1.0",
         "eslint": "^7.22.0",
+        "eslint-plugin-cypress": "^2.11.2",
         "eslint-plugin-nuxt": "^2.0.0",
         "eslint-plugin-vue": "^7.7.0",
         "eslint-plugin-wdio": "^7.0.0",
@@ -43,6 +46,7 @@
         "postcss": "^8.2.8",
         "sass": "^1.32.11",
         "sass-loader": "^10.1.1",
+        "start-server-and-test": "^1.12.1",
         "stylelint": "^13.12.0",
         "stylelint-config-standard": "^22.0.0",
         "ts-node": "^9.1.1",

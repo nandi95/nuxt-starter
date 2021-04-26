@@ -1,6 +1,9 @@
 <template>
-    <div>
+    <div class="relative">
         <Nuxt />
+        <div v-if="$nuxt.isOffline" class="bg-brand-500 rounded shadow absolute p-4 bottom-4 right-4 text-white">
+            You're offline!
+        </div>
     </div>
 </template>
 

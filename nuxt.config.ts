@@ -1,4 +1,4 @@
-import { NuxtConfig } from '@nuxt/types';
+import type { NuxtConfig } from '@nuxt/types';
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -47,13 +47,15 @@ export default {
         '@nuxtjs/stylelint-module',
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
+        // https://composition-api.nuxtjs.org/
         '@nuxtjs/composition-api/module'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
-    // https://go.nuxtjs.dev/pwa
+        // https://go.nuxtjs.dev/pwa
         '@nuxtjs/pwa',
+        // https://sitemap.nuxtjs.org/
         '@nuxtjs/sitemap'
     ],
 
@@ -74,5 +76,9 @@ export default {
 
     tailwindcss: {
         jit: true
+    },
+
+    sitemap: {
+        hostname: 'http://localhost:3000/'
     }
 } as NuxtConfig;

@@ -12,7 +12,9 @@
         "lint": "npm run lint:js && npm run lint:style",
         "prepare": "husky install",
         "cy:open": "cypress open",
-        "cy:run": "cypress run"
+        "cy:run": "cypress run",
+        "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
+        "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open"
     },
     "lint-staged": {
         "*.{ts,tsx,vue}": "eslint",

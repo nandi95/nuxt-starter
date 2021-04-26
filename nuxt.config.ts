@@ -6,7 +6,7 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Cina Delicious Cakes',
+        title: 'Nuxt Starter',
         meta: [
             { charset: 'utf-8' },
             {

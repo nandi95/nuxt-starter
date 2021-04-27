@@ -1,2 +1,5 @@
 // todo
     1 - Add icons - https://www.npmjs.com/package/@iconify/vue
+    2 - Add favicons - https://github.com/pimlie/nuxt-rfg-icon
+    3 - Add default robots.txt
+    4 - Consider adding this typed router module https://github.com/victorgarciaesgi/nuxt-typed-router

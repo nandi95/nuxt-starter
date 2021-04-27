@@ -1,4 +1,6 @@
 import type { NuxtConfig } from '@nuxt/types';
+import type { ColorModeConfig } from '@nuxtjs/color-mode/types/color-mode';
+import type { CreateImageOptions } from '@nuxt/image';
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -6,7 +8,9 @@ export default {
 
     // Global page headers: https://go.nuxtjs.dev/config-head
     head: {
-        title: 'Nuxt Starter',
+        titleTemplate: (titleChunk) => {
+            return (titleChunk ? titleChunk + ' | ' : '') + 'Nuxt Starter';
+        },
         meta: [
             { charset: 'utf-8' },
             {
@@ -45,30 +49,25 @@ export default {
 
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
-    // https://go.nuxtjs.dev/typescript
+        // https://go.nuxtjs.dev/typescript
         '@nuxt/typescript-build',
         // https://go.nuxtjs.dev/stylelint
         '@nuxtjs/stylelint-module',
         // https://go.nuxtjs.dev/tailwindcss
         '@nuxtjs/tailwindcss',
         // https://composition-api.nuxtjs.org/
-        '@nuxtjs/composition-api/module'
+        '@nuxtjs/composition-api/module',
+        // https://color-mode.nuxtjs.org/
+        '@nuxtjs/color-mode',
+        // https://image.nuxtjs.org
+        '@nuxt/image'
     ],
 
     // Modules: https://go.nuxtjs.dev/config-modules
     modules: [
-        // https://go.nuxtjs.dev/pwa
-        '@nuxtjs/pwa',
         // https://sitemap.nuxtjs.org/
         '@nuxtjs/sitemap'
     ],
-
-    // PWA module configuration: https://go.nuxtjs.dev/pwa
-    pwa: {
-        manifest: {
-            lang: 'en'
-        }
-    },
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
@@ -84,5 +83,12 @@ export default {
 
     sitemap: {
         hostname: 'http://localhost:3000/'
-    }
+    },
+
+    colorMode: {
+        fallback: 'light',
+        classSuffix: ''
+    } as ColorModeConfig,
+
+    image: {} as CreateImageOptions
 } as NuxtConfig;

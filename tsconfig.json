@@ -18,8 +18,10 @@
             ]
         },
         "types": [
+            "@types/node",
             "@nuxt/types",
-            "cypress"
+            "cypress",
+            "@nuxtjs/color-mode"
         ]
     },
     "exclude": [

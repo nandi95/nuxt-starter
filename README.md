@@ -1,4 +1,15 @@
-# cina-delicious-cakes
+# Nuxt starter
+
+Configured with:
+ - pwa
+ - scss
+ - sitemap
+ - dark mode
+ - cypress
+ - tailwind custom colors
+ - composition api
+ - husky git hooks
+ - eslint & style lint
 
 ## Build Setup
 

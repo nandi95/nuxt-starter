@@ -9,9 +9,17 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api';
+import useTailwindDarkMode from '~/composables/darkmode';
 
 export default defineComponent({
-    name: 'Default'
+    name: 'Default',
+    setup: () => {
+        const { toggleTheme } = useTailwindDarkMode();
+
+        return {
+            toggleTheme
+        };
+    }
 });
 </script>
 

@@ -1,0 +1,2 @@
+// todo
+    1 - Add icons - https://www.npmjs.com/package/@iconify/vue

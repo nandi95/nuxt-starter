@@ -51,6 +51,7 @@ module.exports = {
         'comma-dangle': ['warn', 'never'],
         'max-len': ['warn', 120],
         'eqeqeq': 'error',
+        'no-mixed-operators': 'off',
 
         // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules
         '@typescript-eslint/indent': ['warn', 4],

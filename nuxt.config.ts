@@ -28,6 +28,10 @@ export default {
         ]
     },
 
+    publicRuntimeConfig: {
+        baseURL: process.env.BASE_URL
+    },
+
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [
         '~/assets/css/main.scss'
@@ -69,8 +73,8 @@ export default {
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {},
 
+    // https://composition-api.nuxtjs.org/getting-started/setup
     generate: {
-        // choose to suit your project
         interval: 2000
     },
 

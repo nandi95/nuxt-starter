@@ -33,7 +33,11 @@ export default {
     },
 
     publicRuntimeConfig: {
-        baseURL: process.env.BASE_URL
+        baseURL: process.env.BASE_URL,
+        social: {
+            facebook: '',
+            instagram: ''
+        }
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
@@ -42,7 +46,9 @@ export default {
     ],
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [],
+    plugins: [
+        { src: '~/plugins/routeNames.ts' }
+    ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
     components: true,
@@ -82,7 +88,19 @@ export default {
     },
 
     sitemap: {
-        hostname: 'http://localhost:3000/'
+        hostname: process.env.BASE_URL ?? 'http://localhost:3000/',
+        gzip: true
+    },
+
+    robots: () => {
+        if (process.env.NODE_ENV === 'production') {
+            return {
+                Sitemap: `${process.env.BASE_URL}/sitemap.xml`
+            };
+        }
+        return {
+            Disallow: '/'
+        };
     },
 
     colorMode: {

@@ -1,15 +1,16 @@
 # Nuxt starter
 
 Configured with:
- - pwa
  - scss
- - sitemap
+ - sitemap / robots
  - dark mode
  - cypress
  - tailwind custom colors
  - composition api
  - husky git hooks
  - eslint & style lint
+ - icon using mdi
+ - routes manually added to a map in routerNames plugin
 
 ## Build Setup
 

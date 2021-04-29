@@ -23,7 +23,8 @@
                     rel="noopener noreferrer"
                     class="rounded shadow border border-gray-600 hover:shadow-none transition-all duration-50
                            hover:text-white hover:bg-gray-600 p-4 mx-2 flex">
-                    <Icon name="github" class="mr-2" /> GitHub
+                    <Icon name="github" class="mr-2" />
+                    GitHub
                 </a>
             </div>
         </div>

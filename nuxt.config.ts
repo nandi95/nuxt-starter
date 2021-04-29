@@ -1,36 +1,14 @@
 import type { NuxtConfig } from '@nuxt/types';
 import type { ColorModeConfig } from '@nuxtjs/color-mode/types/color-mode';
 import type { CreateImageOptions } from '@nuxt/image';
+import head from './config/head';
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'static',
 
     // Global page headers: https://go.nuxtjs.dev/config-head
-    head: {
-        titleTemplate: (titleChunk) => {
-            return (titleChunk ? titleChunk + ' | ' : '') + 'Nuxt Starter';
-        },
-        meta: [
-            { charset: 'utf-8' },
-            {
-                name: 'viewport',
-                content: 'width=device-width, initial-scale=1'
-            },
-            {
-                hid: 'description',
-                name: 'description',
-                content: ''
-            }
-        ],
-        link: [
-            {
-                rel: 'icon',
-                type: 'image/x-icon',
-                href: '/favicon.ico'
-            }
-        ]
-    },
+    head,
 
     publicRuntimeConfig: {
         baseURL: process.env.BASE_URL,
@@ -81,6 +59,11 @@ export default {
     // https://composition-api.nuxtjs.org/getting-started/setup
     generate: {
         interval: 2000
+    },
+
+    loading: {
+        color: '#059669',
+        height: '5px'
     },
 
     tailwindcss: {

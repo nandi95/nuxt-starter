@@ -1,15 +1,15 @@
 import type { NuxtConfig } from '@nuxt/types';
+import { publicData, baseUrl, mainColor } from './constants';
 
-const titleTemplate: Exclude<NonNullable<NuxtConfig['head']>, () => void>['titleTemplate'] = (titleChunk) => {
+type NuxtOptionsHead = NonNullable<Exclude<NuxtConfig['head'], () => void>>;
+
+const titleTemplate: NuxtOptionsHead['titleTemplate'] = titleChunk => {
+    // todo - get that value from the constants
     return (titleChunk ? titleChunk + ' | ' : '') + 'Nuxt Starter';
 };
 
-const description = 'Build your next Vue.js application with confidence using NuxtJS. ' +
-    'An open source framework making web development simple and powerful.';
-const image = '/icon.png';
-
 // Global page headers: https://go.nuxtjs.dev/config-head
-export default {
+const head = {
     titleTemplate,
     meta: [
         { charset: 'utf-8' },
@@ -18,9 +18,29 @@ export default {
             content: 'width=device-width, initial-scale=1'
         },
         {
+            hid: 'author',
+            name: 'author',
+            content: baseUrl
+        },
+        {
+            hid: 'publisher',
+            name: 'publisher',
+            content: baseUrl
+        },
+        {
+            hid: 'apple-web-app-title',
+            name: 'apple-mobile-web-app-title',
+            content: publicData.name
+        },
+        {
+            hid: 'theme-color',
+            name: 'theme-color',
+            content: mainColor
+        },
+        {
             hid: 'description',
             name: 'description',
-            content: description
+            content: publicData.description
         },
         {
             hid: 'twitter:title',
@@ -30,12 +50,17 @@ export default {
         {
             hid: 'twitter:description',
             name: 'twitter:description',
-            content: description
+            content: publicData.description
+        },
+        {
+            hid: 'twitter:card',
+            name: 'twitter:card',
+            content: publicData.image
         },
         {
             hid: 'twitter:image',
             name: 'twitter:image',
-            content: image
+            content: publicData.image
         },
         {
             hid: 'twitter:image:alt',
@@ -44,28 +69,43 @@ export default {
         },
         {
             hid: 'og:title',
-            property: 'og:title',
+            name: 'og:title',
             template: titleTemplate
         },
         {
             hid: 'og:description',
-            property: 'og:description',
-            content: description
+            name: 'og:description',
+            content: publicData.description
+        },
+        {
+            hid: 'og:type',
+            name: 'og:type',
+            content: 'website'
+        },
+        {
+            hid: 'og:url',
+            name: 'og:url',
+            content: baseUrl
         },
         {
             hid: 'og:image',
-            property: 'og:image',
-            content: image
+            name: 'og:image',
+            content: publicData.image
         },
         {
             hid: 'og:image:secure_url',
-            property: 'og:image:secure_url',
-            content: image
+            name: 'og:image:secure_url',
+            content: publicData.image
         },
         {
             hid: 'og:image:alt',
-            property: 'og:image:alt',
+            name: 'og:image:alt',
             template: titleTemplate
+        },
+        {
+            hid: 'og:site_name',
+            name: 'og:site_name',
+            content: publicData.name
         }
     ],
     link: [
@@ -74,5 +114,42 @@ export default {
             type: 'image/x-icon',
             href: '/favicon.ico'
         }
+    ],
+    noscript: [
+        { innerHTML: 'This website requires JavaScript.' }
+    ],
+    script: [
+        {
+            type: 'application/ld+json',
+            json: {
+                '@context': 'https://schema.org',
+                '@type': ''
+            }
+        }
     ]
-} as NuxtConfig['head'];
+} as NuxtOptionsHead;
+
+if (publicData.social.twitter) {
+    head!.meta!.push(
+        {
+            hid: 'twitter:site',
+            name: 'twitter:site',
+            content: publicData.social.twitter
+        },
+        {
+            hid: 'twitter:creator',
+            name: 'twitter:creator',
+            content: publicData.social.twitter
+        }
+    );
+}
+
+head.meta = head.meta!.map(meta => {
+    if (!meta.charset) {
+        meta.property = meta.name;
+    }
+
+    return meta;
+});
+
+export default head;

@@ -2,6 +2,7 @@ import type { NuxtConfig } from '@nuxt/types';
 import type { ColorModeConfig } from '@nuxtjs/color-mode/types/color-mode';
 import type { CreateImageOptions } from '@nuxt/image';
 import head from './config/head';
+import { mainColor, baseUrl, publicData } from './config/constants';
 
 export default {
     // Target: https://go.nuxtjs.dev/config-target
@@ -11,11 +12,8 @@ export default {
     head,
 
     publicRuntimeConfig: {
-        baseURL: process.env.BASE_URL,
-        social: {
-            facebook: '',
-            instagram: ''
-        }
+        baseUrl,
+        ...publicData
     },
 
     // Global CSS: https://go.nuxtjs.dev/config-css
@@ -62,7 +60,7 @@ export default {
     },
 
     loading: {
-        color: '#059669',
+        color: mainColor,
         height: '5px'
     },
 

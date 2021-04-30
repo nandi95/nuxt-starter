@@ -52,6 +52,7 @@ module.exports = {
         'max-len': ['warn', 120],
         'eqeqeq': 'error',
         'no-mixed-operators': 'off',
+        'arrow-parens': 'off',
 
         // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules
         '@typescript-eslint/indent': ['warn', 4],

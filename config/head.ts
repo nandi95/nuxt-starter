@@ -119,13 +119,13 @@ const head = {
         { innerHTML: 'This website requires JavaScript.' }
     ],
     script: [
-        {
-            type: 'application/ld+json',
-            json: {
-                '@context': 'https://schema.org',
-                '@type': ''
-            }
-        }
+        // {
+        //     type: 'application/ld+json',
+        //     json: {
+        //         '@context': 'https://schema.org',
+        //         '@type': ''
+        //     }
+        // }
     ]
 } as NuxtOptionsHead;
 

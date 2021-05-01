@@ -4,7 +4,7 @@ export const publicData = {
     name: 'Nuxt Starter',
     email: 'nuxt@starter.foo',
     telephone: '00000000000',
-    image: '/icon.png',
+    image: baseUrl + '/icon.png',
     description: 'Build your next Vue.js application with confidence using NuxtJS. ' +
         'An open source framework making web development simple and powerful.',
     address: {

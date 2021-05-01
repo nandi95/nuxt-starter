@@ -11,6 +11,7 @@ Configured with:
  - eslint & style lint
  - icon using mdi
  - routes manually added to a map in routerNames plugin
+ - seo configured
 
 ## Build Setup
 

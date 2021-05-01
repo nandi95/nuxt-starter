@@ -7,6 +7,7 @@ Configured with:
  - cypress
  - tailwind custom colors
  - composition api
+ - typescript
  - husky git hooks
  - eslint & style lint
  - icon using mdi

@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "@mdi/js": "^5.9.55",
-        "@nuxtjs/composition-api": "^0.23.4",
+        "@nuxtjs/composition-api": "^0.24.4",
         "@nuxtjs/pwa": "^3.3.5",
         "@nuxtjs/sitemap": "^2.4.0",
         "core-js": "^3.11.1",
@@ -47,14 +47,14 @@
         "eslint-plugin-vue": "^7.7.0",
         "fibers": "^5.0.0",
         "husky": "^6.0.0",
-        "lint-staged": "^10.5.4",
+        "lint-staged": "^11.0.0",
         "postcss": "^8.2.13",
         "sass": "^1.32.12",
-        "sass-loader": "^10.1.1",
+        "sass-loader": "^12.0.0",
         "start-server-and-test": "^1.12.1",
         "stylelint": "^13.12.0",
         "stylelint-config-standard": "^22.0.0",
-        "ts-node": "^9.1.1",
-        "typescript": "^4.2.4"
+        "ts-node": "^10.0.0",
+        "typescript": "^4.3.2"
     }
 }

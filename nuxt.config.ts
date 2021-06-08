@@ -64,10 +64,6 @@ export default {
         height: '5px'
     },
 
-    tailwindcss: {
-        jit: true
-    },
-
     sitemap: {
         hostname: process.env.BASE_URL ?? 'http://localhost:3000/',
         gzip: true

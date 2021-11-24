@@ -1,0 +1,44 @@
+:root {
+    // rbg values of the colours
+    --color-brand-50: 155, 222, 216;
+    --color-brand-100: 134, 215, 208;
+    --color-brand-200: 114, 209, 200;
+    --color-brand-300: 94, 202, 193;
+    --color-brand-400: 74, 196, 185;
+    --color-brand-500: 54, 189, 177;
+    --color-brand-600: 49, 170, 159;
+    --color-brand-700: 43, 151, 142;
+    --color-brand-800: 38, 132, 124;
+    --color-brand-900: 32, 113, 106;
+}
+
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+html {
+    font-family: proxima-nova, 'Helvetica Neue', 'Lato', Helvetica, Arial, sans-serif;
+}
+
+html,
+body {
+    min-height: 100vh;
+
+    h1 {
+        @apply text-3xl;
+    }
+
+    h2 {
+        @apply text-2xl;
+    }
+
+    h3 {
+        @apply text-xl;
+    }
+
+    h4 {
+        @apply text-lg;
+    }
+}

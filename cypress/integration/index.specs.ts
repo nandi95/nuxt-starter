@@ -1,5 +1,5 @@
 describe('index.vue', () => {
-    it('shows hello', () => {
-        cy.visit('/').contains('Documentation');
+    it('shows landing page', () => {
+        cy.visit('').contains('Public landing');
     });
 });

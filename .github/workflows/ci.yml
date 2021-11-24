@@ -1,30 +1,32 @@
-name: ci
+name: Continious Integration
 
 on:
-  push:
-    branches:
-      - main
-      - master
   pull_request:
+    types: [ready_for_review, opened, synchronize, reopened]
+    paths:
+      - '**/*.ts'
+      - '**/*.vue'
+      - 'tsconfig*.json'
+      - 'package-lock.json'
+      - '.eslintrc.js'
     branches:
       - main
-      - master
 
 jobs:
-  ci:
+  checks:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [ubuntu-latest]
-        node: [14]
+        os: [ ubuntu-latest ]
+        node: [ 16 ]
 
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
 
       - name: Setup node env 🏗
-        uses: actions/setup-node@v2.1.5
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
           check-latest: true

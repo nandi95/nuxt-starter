@@ -1,89 +1,51 @@
-import type { NuxtConfig } from '@nuxt/types';
-import type { ColorModeConfig } from '@nuxtjs/color-mode/types/color-mode';
-import type { CreateImageOptions } from '@nuxt/image';
-import head from './config/head';
-import { mainColor, baseUrl, publicData } from './config/constants';
+import { defineNuxtConfig } from 'nuxt3';
 
-export default {
-    // Target: https://go.nuxtjs.dev/config-target
-    target: 'static',
-
-    // Global page headers: https://go.nuxtjs.dev/config-head
-    head,
-
+export default defineNuxtConfig({
     publicRuntimeConfig: {
-        baseUrl,
-        ...publicData
+        apiUrl: process.env.API_URL
     },
 
-    // Global CSS: https://go.nuxtjs.dev/config-css
-    css: [
-        '~/assets/css/main.scss'
-    ],
+    srcDir: 'src',
 
-    // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-    plugins: [
-        { src: '~/plugins/routeNames.ts' }
-    ],
+    // todo - turn ssr on
+    ssr: false,
+    target: 'static',
+    vite: false,
+    // vite: {
+    //     server: {
+    //         hmr: {
+    //             protocol: 'ws',
+    //             host: 'website.test'
+    //         },
+    //         https: {
+    //             cert: 'cert.pem',
+    //             key: 'key.pem'
+    //         }
+    //     }
+    // }, // todo - set to vite when resolved: https://github.com/nuxt/framework/issues/1796
 
-    // Auto import components: https://go.nuxtjs.dev/config-components
-    components: true,
-
-    // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-    buildModules: [
-        // https://go.nuxtjs.dev/typescript
-        '@nuxt/typescript-build',
-        // https://go.nuxtjs.dev/stylelint
-        '@nuxtjs/stylelint-module',
-        // https://go.nuxtjs.dev/tailwindcss
-        '@nuxtjs/tailwindcss',
-        // https://composition-api.nuxtjs.org/
-        '@nuxtjs/composition-api/module',
-        // https://color-mode.nuxtjs.org/
-        '@nuxtjs/color-mode',
-        // https://image.nuxtjs.org
-        '@nuxt/image'
-    ],
-
-    // Modules: https://go.nuxtjs.dev/config-modules
-    modules: [
-        // https://sitemap.nuxtjs.org/
-        '@nuxtjs/sitemap'
-    ],
-
-    // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {},
-
-    // https://composition-api.nuxtjs.org/getting-started/setup
-    generate: {
-        interval: 2000
+    typescript: {
+        strict: true
     },
 
-    loading: {
-        color: mainColor,
-        height: '5px'
-    },
-
-    sitemap: {
-        hostname: process.env.BASE_URL ?? 'http://localhost:3000/',
-        gzip: true
-    },
-
-    robots: () => {
-        if (process.env.NODE_ENV === 'production') {
-            return {
-                Sitemap: `${process.env.BASE_URL}/sitemap.xml`
-            };
+    build: {
+        postcss: {
+            postcssOptions: {
+                plugins: {
+                    tailwindcss: {},
+                    autoprefixer: {}
+                }
+            }
         }
-        return {
-            Disallow: '/'
-        };
     },
 
-    colorMode: {
-        fallback: 'light',
-        classSuffix: ''
-    } as ColorModeConfig,
+    meta: {
+        charset: 'utf-8',
+        viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
+        noscript: [
+            { innerHTML: 'This website requires JavaScript.' }
+        ]
+    },
 
-    image: {} as CreateImageOptions
-} as NuxtConfig;
+    css: ['@/assets/main.scss']
+});

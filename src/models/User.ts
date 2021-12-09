@@ -1,6 +1,7 @@
 import { Model } from '@upfrontjs/framework';
 import { isAuthenticated, user } from '~/composables';
 import ErrorHandler from '~/utils/ErrorHandler';
+import UserFactory from '~/factories/model/UserFactory';
 
 export default class User extends Model {
     name?: string;
@@ -8,6 +9,14 @@ export default class User extends Model {
 
     get fillable(): string[] {
         return ['name', 'email'];
+    }
+
+    public override getName(): string {
+        return 'User';
+    }
+
+    public factory(): UserFactory {
+        return new UserFactory();
     }
 
     /**

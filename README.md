@@ -2,7 +2,7 @@
 
 > 🚧Just like nuxt and its ecosystem, this is very much in flux 🚧
 
-##Features:
+## Features:
  - eslint
  - cypress
  - stylelint

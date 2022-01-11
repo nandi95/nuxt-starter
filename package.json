@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "@karnama/vueish": "0.8.1",
-        "@upfrontjs/framework": "0.7.0"
+        "@upfrontjs/framework": "0.7.2"
     },
     "lint-staged": {
         "*.{ts,tsx,vue}": "eslint",

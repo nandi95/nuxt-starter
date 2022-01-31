@@ -1,13 +1,15 @@
-import { customRef, inject, ref } from 'vue';
+import { inject } from 'vue';
 import type { InjectionKey, Ref } from 'vue';
-import type Loader from '~/components/Loader.vue';
 import type { Configuration } from '@upfrontjs/framework';
-import { API, GlobalConfig } from '@upfrontjs/framework';
-import User from '~/models/User';
+import { API, ApiResponseHandler, GlobalConfig } from '@upfrontjs/framework';
+import User, { isAuthenticated } from '~/upfront/models/User';
+import ErrorHandler from '~/utils/ErrorHandler';
+import type { LoaderMethods } from '~/components/Loader.vue';
 
-export const loaderKey: InjectionKey<Ref<InstanceType<typeof Loader>>> = Symbol('loader');
+// This in fact returns the instancetype of the Loader component
+export const loaderKey: InjectionKey<Ref<LoaderMethods>> = Symbol('loader');
 
-export const useLoader = (): InstanceType<typeof Loader> | undefined => {
+export const useLoader = (): LoaderMethods | undefined => {
     return inject(loaderKey)?.value;
 };
 
@@ -17,7 +19,9 @@ export function environment(): Environment;
 export function environment(env: Environment): boolean;
 export function environment(env?: Environment): boolean | Environment {
     const environment: Environment = process.env.NODE_ENV as Environment ??
-        (window?.hasOwnProperty('Cypress') ? 'testing' : process.dev ? 'development' : 'production');
+        (window?.hasOwnProperty('Cypress')
+            ? 'testing'
+            : process.dev ? 'development' : 'production');
 
     if (!env) {
         return environment;
@@ -27,54 +31,34 @@ export function environment(env?: Environment): boolean | Environment {
 }
 
 export const config: GlobalConfig<Configuration & { headers: Headers }> = new GlobalConfig({
-    headers: new Headers(),
+    headers: new Headers({ 'X-Requested-With': 'UpfrontJS' }),
     api: class APIWithCredentials extends API {
-        initRequest(): Partial<RequestInit> {
-            const request: Partial<RequestInit> = {
-                credentials: 'include'
-            };
+        requestOptions: Partial<RequestInit> = {
+            credentials: 'include'
+        };
+    },
+    apiResponseHandler: class ApiResponseHandlerWithErrorHandling extends ApiResponseHandler {
+        public async handleError(rejectReason: Response): Promise<never> {
+            const errorHandler = new ErrorHandler(rejectReason);
 
-            if (document.cookie) {
-                const match = /(.*?)=((.*?)[;,]|.*$)/.exec(document.cookie);
-                const token = match ? match[2] : null;
-
-                if (token) {
-                    request.headers = {
-                        'X-XSRF-TOKEN': decodeURIComponent(token)
-                    };
-                }
+            if (errorHandler.authenticationError()) {
+                isAuthenticated.value = false;
+                await User.logout();
+                return Promise.reject(rejectReason);
             }
 
-            return request;
+            return super.handleError(rejectReason);
         }
     }
 });
 
-function userRef() {
-    return customRef((track, trigger) => {
-        return {
-            get: () => {
-                track();
-                const user = localStorage.getItem('user');
+export const setCookie = (): void => {
+    if (document.cookie) {
+        const match = /(.*?)=((.*?)[;,]|.*$)/.exec(document.cookie);
+        const token = match ? match[2] : null;
 
-                if (!user) {
-                    return null;
-                }
-
-                return new User(JSON.parse(user) as ReturnType<typeof User.prototype.getRawAttributes>);
-            },
-            set: (user: User | null) => {
-                trigger();
-                if (user === null) {
-                    localStorage.removeItem('user');
-                    return;
-                }
-
-                localStorage.setItem('user', JSON.stringify(user.getRawAttributes()));
-            }
-        };
-    });
-}
-
-export const user = process.server ? { value: null } : userRef();
-export const isAuthenticated = ref(!!user.value);
+        if (token) {
+            config.get('headers').set('X-XSRF-TOKEN', decodeURIComponent(token));
+        }
+    }
+};

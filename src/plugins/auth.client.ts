@@ -1,30 +1,59 @@
 import { defineNuxtPlugin } from '#app';
 import type { Router } from 'vue-router';
-import { isAuthenticated, user } from '~/composables';
-import User from '~/models/User';
+import { config, setCookie } from '~/composables';
+import User, { isAuthenticated, user } from '~/upfront/models/User';
 import { watch } from 'vue';
 
 export default defineNuxtPlugin(async nuxt => {
-    if (!document.cookie) {
-        isAuthenticated.value = false;
-        user.value = null;
-    }
+    const router: Router = nuxt.$router;
 
-    if (document.cookie && !isAuthenticated.value) {
-        try {
+    if (document.cookie) {
+        if (!config.get('headers').has('X-XSRF-TOKEN')) {
+            setCookie();
+        }
+
+        if (!isAuthenticated.value) {
             // attempt to get the user, in case the local copy got deleted
-            user.value = await User.get() as User;
-            isAuthenticated.value = true;
-        } catch (e: unknown) {}
+            await User.get()
+                .then(userModel => {
+                    isAuthenticated.value = true;
+                    user.value = userModel as User;
+                })
+                .catch(async () => {
+                    return User.logout();
+                });
+        }
+    } else if (isAuthenticated.value) {
+        // if still logged in but token got lost
+        // todo - test this flow
+        await new User().setEndpoint('csrf-cookie')
+            .get()
+            .then(setCookie)
+            .then(async () => await User.current(true));
+        // custom apiResponseHandler handler unauthenticated error
     }
 
-    nuxt.vueApp.config.globalProperties.$isAuthenticated = isAuthenticated.value;
-    watch(isAuthenticated, newValue => nuxt.vueApp.config.globalProperties.$isAuthenticated = newValue);
+    watch(
+        () => isAuthenticated.value,
+        newValue => nuxt.vueApp.config.globalProperties.$isAuthenticated = newValue,
+        { immediate: true }
+    );
 
-    (nuxt.$router as Router).beforeEach((to, from, next) => {
-        if (to.path.startsWith('/admin') && !isAuthenticated.value) {
-            localStorage.setItem('initialTarget', JSON.stringify(to));
-            return next({ path: 'login' });
+    router.beforeEach((to, from, next) => {
+        if (isAuthenticated.value) {
+            if (to.path === '/login') {
+                return next({ path: '/admin' });
+            }
+
+            return next();
+        }
+
+        if (to.path.startsWith('/admin')) {
+            if (to.path !== '/admin') {
+                localStorage.setItem('initialTarget', JSON.stringify(to));
+            }
+
+            return next({ path: '/login' });
         }
 
         return next();

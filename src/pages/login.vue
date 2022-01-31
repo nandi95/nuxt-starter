@@ -27,7 +27,7 @@
 import { defineComponent, ref, watch } from 'vue';
 import { useNuxtApp } from '#app';
 import type { RouteLocationNormalized, Router } from 'vue-router';
-import User from '~/models/User';
+import User from '~/upfront/models/User';
 import { useLoader } from '~/composables';
 import ErrorHandler from '~/utils/ErrorHandler';
 
@@ -52,7 +52,7 @@ export default defineComponent({
         }
 
         const login = async () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+            // eslint-disable-next-line
             loader.on();
             error.value = null;
             await User.login(email.value, password.value, remember.value)
@@ -64,8 +64,8 @@ export default defineComponent({
                     }
                 })
                 .then(async () => router.push(initialTarget ?? { path: 'admin' }))
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-                .finally(() => loader.off());
+                // eslint-disable-next-line
+                .finally(loader.off);
         };
 
         watch([email, password], () => {

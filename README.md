@@ -1,4 +1,5 @@
 <h1 align="middle">Nuxt 3 Starter template</h1>
+Opinionated starter repository that covers some boilerplate code
 
 > 🚧Just like nuxt and its ecosystem, this is very much in flux 🚧
 

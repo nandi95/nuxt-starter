@@ -1,9 +1,9 @@
 <template>
     <div class="relative w-screen h-screen">
         <Loader ref="loader" />
-        <div>
+        <NuxtLayout>
             <NuxtPage />
-        </div>
+        </NuxtLayout>
     </div>
 </template>
 
@@ -12,9 +12,9 @@ import { defineComponent, provide, ref } from 'vue';
 import { useMeta } from '#meta';
 import meta from '~/composables/meta';
 import Loader from '~/components/Loader.vue';
-import { config, loaderKey } from '~/composables';
-import { useRuntimeConfig } from '#app';
-import { useRouter } from 'vue-router';
+import { loaderKey } from '~/composables';
+import { useNuxtApp } from '#app';
+import type { Router } from 'vue-router';
 
 export default defineComponent({
     name: 'App',
@@ -23,10 +23,10 @@ export default defineComponent({
 
     setup: () => {
         useMeta(meta);
-        const router = useRouter();
+        const router = useNuxtApp().$router as Router;
         const loader = ref<InstanceType<typeof Loader>>();
+        // @ts-expect-error
         provide(loaderKey, loader);
-        config.set('baseEndPoint', useRuntimeConfig().apiUrl);
 
         router.beforeEach(() => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access

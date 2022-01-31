@@ -7,8 +7,23 @@
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue';
 
+interface CustomisableProps {
+    determinate: boolean;
+    height: number;
+    progress: number;
+    steps: number;
+}
+
+export interface LoaderMethods {
+    on: () => void;
+    off: () => void;
+    setProps: (properties: CustomisableProps) => void;
+}
+
 export default defineComponent({
     name: 'Loader',
+
+    expose: ['on', 'off', 'setProps'],
 
     setup: () => {
         let startTime: ReturnType<Date['getTime']>;
@@ -24,15 +39,15 @@ export default defineComponent({
                     isVisible.value = true;
                 } else {
                     // make sure it isn't just a flash
-                    if (startTime && new Date().getTime() - startTime < 500) {
-                        timeout = setTimeout(() => isVisible.value = false, 500);
+                    if (startTime && new Date().getTime() - startTime < 250) {
+                        timeout = setTimeout(() => isVisible.value = false, 250);
                     } else {
                         isVisible.value = false;
                     }
                 }
             }
         });
-        const props = reactive({
+        const props = reactive<CustomisableProps>({
             determinate: false,
             height: 4,
             progress: 0,
@@ -41,7 +56,7 @@ export default defineComponent({
 
         const on = () => visibility.value = true;
         const off = () => visibility.value = false;
-        const setProps = (properties: Partial<typeof props>) => {
+        const setProps = (properties: Partial<CustomisableProps>) => {
             Object.keys(props).forEach(key => {
                 // @ts-expect-error
                 props[key] = properties[key];

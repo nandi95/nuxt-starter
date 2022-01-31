@@ -1,6 +1,6 @@
 import type { Attributes } from '@upfrontjs/framework';
 import { Factory } from '@upfrontjs/framework';
-import type User from '~/models/User';
+import type User from '~/upfront/models/User';
 
 export default class UserFactory extends Factory<User> {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars

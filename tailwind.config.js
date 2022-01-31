@@ -17,7 +17,6 @@ const brandColors = levels => {
 
     return colors;
 };
-const colors = require('tailwindcss/colors')
 
 /**
  * @type {import('@types/tailwindcss').TailwindConfig}
@@ -39,7 +38,6 @@ module.exports = {
                 xs: '480px'
             },
             colors: {
-                ...colors,
                 ...brandColors([50, 100, 200, 300, 400, 500, 600, 700, 800, 900])
             }
         },

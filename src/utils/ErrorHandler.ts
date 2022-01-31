@@ -28,7 +28,7 @@ export default class ErrorHandler {
     /**
      * Check whether this is due to user not being logged in.
      */
-    public isUnauthenticatedError(): boolean {
+    public authenticationError(): boolean {
         return this.response?.status === 401 || this.response?.status === 419;
     }
 
@@ -45,8 +45,8 @@ export default class ErrorHandler {
     /**
      * Get the errors or specific error messages.
      */
-    public async getErrors(): Promise<Record<string, string[]> | undefined>
-    public async getErrors(field: string): Promise<string[] | undefined>
+    public async getErrors(): Promise<Record<string, string[]> | undefined>;
+    public async getErrors(field: string): Promise<string[] | undefined>;
     public async getErrors(field?: string): Promise<Record<string, string[]> | string[] | undefined> {
         const body = await this.getBody<Record<string, any>>();
 

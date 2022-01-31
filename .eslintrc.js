@@ -73,6 +73,7 @@ module.exports = {
         'comma-dangle': ['warn', 'never'],
         'max-len': ['warn', 120],
         'eqeqeq': 'error',
+        'lines-between-class-members': 'off',
 
         // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin#supported-rules
         '@typescript-eslint/indent': ['warn', 4],
@@ -121,6 +122,7 @@ module.exports = {
             }
         ],
         '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/lines-between-class-members': 'off',
 
         // https://eslint.vuejs.org/rules/
         // if unsure and eslint doesn't cover it please refer to https://v3.vuejs.org/style-guide/

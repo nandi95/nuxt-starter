@@ -30,7 +30,7 @@ export default defineNuxtConfig({
     },
 
     modules: [
-        '~/modules/router.ts'
+        '~/modules/app-customisations.ts'
     ],
 
     autoImports: {

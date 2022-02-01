@@ -4,7 +4,7 @@ import type { Configuration } from '@upfrontjs/framework';
 import { API, ApiResponseHandler, GlobalConfig } from '@upfrontjs/framework';
 import User, { isAuthenticated } from '~/upfront/models/User';
 import ErrorHandler from '~/utils/ErrorHandler';
-import type { LoaderMethods } from '~/components/Loader.vue';
+import type { LoaderMethods } from '~/types';
 
 // This in fact returns the instancetype of the Loader component
 export const loaderKey: InjectionKey<Ref<LoaderMethods>> = Symbol('loader');

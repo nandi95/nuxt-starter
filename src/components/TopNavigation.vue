@@ -50,12 +50,10 @@ export default defineComponent({
         onMounted(async () => User.current().then(user => userName.value = user!.name));
 
         const logout = async () => {
-            // eslint-disable-next-line
             loader.on();
             return await User.logout()
                 .then(async () => router.push({ path: '/' }))
                 .catch(async () => router.push({ path: '/login' }))
-                // eslint-disable-next-line
                 .finally(loader.off);
         };
 

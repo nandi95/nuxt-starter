@@ -52,7 +52,6 @@ export default defineComponent({
         }
 
         const login = async () => {
-            // eslint-disable-next-line
             loader.on();
             error.value = null;
             await User.login(email.value, password.value, remember.value)
@@ -64,7 +63,6 @@ export default defineComponent({
                     }
                 })
                 .then(async () => router.push(initialTarget ?? { path: 'admin' }))
-                // eslint-disable-next-line
                 .finally(loader.off);
         };
 

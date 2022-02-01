@@ -6,19 +6,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue';
-
-interface CustomisableProps {
-    determinate: boolean;
-    height: number;
-    progress: number;
-    steps: number;
-}
-
-export interface LoaderMethods {
-    on: () => void;
-    off: () => void;
-    setProps: (properties: CustomisableProps) => void;
-}
+import type { LoaderMethods, CustomisableProps } from '~/types';
 
 export default defineComponent({
     name: 'Loader',

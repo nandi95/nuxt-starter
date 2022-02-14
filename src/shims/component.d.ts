@@ -1,6 +1,8 @@
+import type { Ref } from 'vue';
+
 declare module '@vue/runtime-core' {
     interface ComponentCustomProperties {
-        $isAuthenticated: boolean;
+        $isAuthenticated: Ref<boolean>;
     }
 
     interface ComponentCustomOptions {

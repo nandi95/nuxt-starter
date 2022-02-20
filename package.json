@@ -31,7 +31,7 @@
         "eslint-plugin-vue": "^7.20.0",
         "husky": "^7.0.2",
         "lint-staged": "^12.0.2",
-        "nuxt3": "^3.0.0-27413936.9734856",
+        "nuxt3": "^3.0.0-27420403.16e2a54",
         "postcss": "^8.4.4",
         "sass": "^1.43.2",
         "sass-loader": "^12.3.0",
@@ -40,8 +40,8 @@
         "tailwindcss": "^3.0.0"
     },
     "dependencies": {
-        "@karnama/vueish": "0.12.0",
-        "@upfrontjs/framework": "0.9.0"
+        "@karnama/vueish": "0.12.1",
+        "@upfrontjs/framework": "0.10.0"
     },
     "lint-staged": {
         "*.{ts,tsx,vue}": "eslint",

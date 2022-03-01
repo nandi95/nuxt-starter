@@ -15,7 +15,7 @@
     },
     "devDependencies": {
         "@mdi/js": "^6.5.95",
-        "@types/tailwindcss": "^3.0.2",
+        "@types/tailwindcss": "^3.0.9",
         "@typescript-eslint/eslint-plugin": "^5.4.0",
         "@typescript-eslint/parser": "^5.4.0",
         "@vue/eslint-config-standard": "^6.0.0",

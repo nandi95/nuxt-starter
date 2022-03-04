@@ -12,12 +12,6 @@
     --color-brand-900: 32, 113, 106;
 }
 
-/* stylelint-disable at-rule-no-unknown */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-/* stylelint-enable at-rule-no-unknown */
-
 html {
     font-family: proxima-nova, 'Helvetica Neue', 'Lato', Helvetica, Arial, sans-serif;
 }

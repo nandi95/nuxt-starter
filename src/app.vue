@@ -14,7 +14,6 @@ import meta from '~/composables/meta';
 import Loader from '~/components/Loader.vue';
 import { loaderKey } from '~/composables';
 import { useNuxtApp } from '#app';
-import type { Router } from 'vue-router';
 
 export default defineComponent({
     name: 'App',
@@ -23,21 +22,19 @@ export default defineComponent({
 
     setup: () => {
         useMeta(meta);
-        const router = useNuxtApp().$router as Router;
         const loader = ref<InstanceType<typeof Loader>>();
+        const nuxtApp = useNuxtApp();
         // @ts-expect-error
         provide(loaderKey, loader);
 
-        router.beforeEach(() => {
+        nuxtApp.hook('page:start', () => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             loader.value?.on();
-            return true;
         });
 
-        router.afterEach(() => {
+        nuxtApp.hook('page:finish', () => {
             // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
             loader.value?.off();
-            return true;
         });
 
         return {

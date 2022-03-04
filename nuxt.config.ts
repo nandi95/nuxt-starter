@@ -1,5 +1,6 @@
 import { defineNuxtConfig } from 'nuxt3';
 import path from 'path';
+import { bundle } from '@nuxt/webpack-builder-edge';
 
 export default defineNuxtConfig({
     publicRuntimeConfig: {
@@ -11,26 +12,15 @@ export default defineNuxtConfig({
     // todo - turn ssr on
     ssr: false,
     target: 'static',
-    vite: false,
-    // vite: {
-    //     server: {
-    //         hmr: {
-    //             protocol: 'ws',
-    //             host: 'website.test'
-    //         },
-    //         https: {
-    //             cert: 'cert.pem',
-    //             key: 'key.pem'
-    //         }
-    //     }
-    // }, // todo - set to vite when resolved: https://github.com/nuxt/framework/issues/1796
+    builder: { bundle }, // todo - set to vite when resolved: https://github.com/nuxt/framework/issues/1796
 
     typescript: {
         strict: true
     },
 
     modules: [
-        '~/modules/app-customisations.ts'
+        '~/modules/app-customisations.ts',
+        '@nuxtjs/tailwindcss'
     ],
 
     autoImports: {
@@ -45,17 +35,6 @@ export default defineNuxtConfig({
                 disabled: true
             }
         ]
-    },
-
-    build: {
-        postcss: {
-            postcssOptions: {
-                plugins: {
-                    tailwindcss: {},
-                    autoprefixer: {}
-                }
-            }
-        }
     },
 
     meta: {

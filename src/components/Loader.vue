@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, reactive, ref } from 'vue';
-import type { LoaderMethods, CustomisableProps } from '~/types';
+import type { CustomisableProps } from '~/types';
 
 export default defineComponent({
     name: 'Loader',

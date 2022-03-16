@@ -31,6 +31,7 @@ export function environment(env?: Environment): boolean | Environment {
 }
 
 export const config: GlobalConfig<Configuration & { headers: Headers }> = new GlobalConfig({
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     headers: new Headers({ 'X-Requested-With': 'UpfrontJS' }),
     api: class APIWithCredentials extends API {
         requestOptions: Partial<RequestInit> = {

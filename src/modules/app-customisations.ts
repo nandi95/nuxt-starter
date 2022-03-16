@@ -6,6 +6,7 @@ export default defineNuxtModule({
     },
     hooks: {
         // ensure  all admin routes have their layout set
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'pages:extend': (pages) => {
             pages.forEach(page => {
                 if (page.path.startsWith('/admin')) {
@@ -14,6 +15,7 @@ export default defineNuxtModule({
             });
         },
         // ensure upfront loaded before auth plugin
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         'app:resolve': (app) => {
             const plugins = app.plugins;
             const upfrontPluginIndex = plugins.findIndex(plugin => plugin.src.endsWith('upfront.ts'));

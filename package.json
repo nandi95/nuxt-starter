@@ -15,7 +15,6 @@
     },
     "devDependencies": {
         "@mdi/js": "^6.5.95",
-        "@nuxt/webpack-builder-edge": "^3.0.0-27430570.4cfad4d",
         "@nuxtjs/tailwindcss": "^5.0.0-4",
         "@pinia/nuxt": "^0.1.8",
         "@types/tailwindcss": "^3.0.2",
@@ -34,7 +33,7 @@
         "eslint-plugin-vue": "^7.20.0",
         "husky": "^7.0.2",
         "lint-staged": "^12.0.2",
-        "nuxt3": "^3.0.0-27439932.78761c2",
+        "nuxt3": "^3.0.0-27456065.f38cace",
         "pinia": "^2.0.11",
         "postcss": "^8.4.4",
         "sass": "^1.43.2",
@@ -44,7 +43,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "@karnama/vueish": "0.12.1",
+        "@karnama/vueish": "0.13.1",
         "@upfrontjs/framework": "0.10.0"
     },
     "lint-staged": {

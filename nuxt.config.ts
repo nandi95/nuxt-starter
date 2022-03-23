@@ -9,15 +9,6 @@ export default defineNuxtConfig({
 
     // todo - turn ssr on
     ssr: false,
-    target: 'static',
-    vite: {
-        server: {
-            hmr: {
-                protocol: 'ws',
-                host: 'website.test'
-            }
-        }
-    },
 
     typescript: {
         strict: true

@@ -36,3 +36,19 @@ body {
         @apply text-lg;
     }
 }
+
+.dark .ui-panel {
+    .ui-text>div {
+        background-color: theme('colors.gray.500') !important;
+    }
+}
+
+.page-enter-active,
+.page-leave-active {
+    transition: opacity 100ms ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+    opacity: 0;
+}

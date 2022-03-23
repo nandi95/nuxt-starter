@@ -9,8 +9,8 @@ import type { LoaderMethods } from '~/types';
 // This in fact returns the instancetype of the Loader component
 export const loaderKey: InjectionKey<Ref<LoaderMethods>> = Symbol('loader');
 
-export const useLoader = (): LoaderMethods | undefined => {
-    return inject(loaderKey)?.value;
+export const useLoader = (): Ref<LoaderMethods> | undefined => {
+    return inject(loaderKey);
 };
 
 type Environment = 'production' | 'testing' | 'development';
@@ -53,13 +53,20 @@ export const config: GlobalConfig<Configuration & { headers: Headers }> = new Gl
     }
 });
 
-export const setCookie = (): void => {
+/**
+ * Returns boolean indicating if setting was successful or not.
+ */
+export const setCookie = (): boolean => {
     if (document.cookie) {
         const match = /(.*?)=((.*?)[;,]|.*$)/.exec(document.cookie);
         const token = match ? match[2] : null;
 
         if (token) {
             config.get('headers').set('X-XSRF-TOKEN', decodeURIComponent(token));
+
+            return true;
         }
     }
+
+    return false;
 };

@@ -37,7 +37,11 @@ export default class User extends Model {
             // get the cookie for the browser
             await userInstance.setEndpoint('csrf-cookie')
                 .call('get')
-                .then(setCookie);
+                .then(() => {
+                    if (!setCookie()) {
+                        throw new Error('Unable set cookie.');
+                    }
+                });
         }
 
         // log in & create the session
@@ -128,5 +132,5 @@ function userRef() {
     });
 }
 
-export const user = process.server ? { value: null } : userRef();
+export const user = process.server ? ref(null) : userRef();
 export const isAuthenticated = ref(!!user.value);

@@ -1,7 +1,7 @@
 {
     "private": true,
     "scripts": {
-        "dev": "nuxi dev --host website.test --https --ssl-key key.pem --ssl-cert cert.pem --port 3000",
+        "dev": "nuxi dev --host 127.0.0.1 --port 3000",
         "build": "nuxi build",
         "start": "node .output/server/index.mjs",
         "prepare": "husky install",
@@ -10,8 +10,8 @@
         "lint": "npm run lint:js && npm run lint:style",
         "cy:open": "cypress open",
         "cy:run": "cypress run",
-        "test:e2e:run": "start-server-and-test start http://localhost:3000 cy:run",
-        "test:e2e:dev": "start-server-and-test dev http://localhost:3000 cy:open"
+        "test:e2e:run": "start-server-and-test start http://127.0.0.1:3000 cy:run",
+        "test:e2e:dev": "start-server-and-test dev http://127.0.0.1:3000 cy:open"
     },
     "devDependencies": {
         "@mdi/js": "^6.5.95",
@@ -33,7 +33,7 @@
         "eslint-plugin-vue": "^7.20.0",
         "husky": "^7.0.2",
         "lint-staged": "^12.0.2",
-        "nuxt3": "^3.0.0-27456065.f38cace",
+        "nuxt3": "^3.0.0-27465767.70f067a",
         "pinia": "^2.0.11",
         "postcss": "^8.4.4",
         "sass": "^1.43.2",

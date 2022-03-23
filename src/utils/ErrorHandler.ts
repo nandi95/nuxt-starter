@@ -1,10 +1,19 @@
 import type { ApiResponse } from '@upfrontjs/framework';
 
-export default class ErrorHandler {
+export async function parseError(reason: ApiResponse | Error | any): Promise<ErrorHandler> {
+    const handler = new ErrorHandler(reason);
+    await handler.parseBody();
+
+    return handler;
+}
+
+export default class ErrorHandler<T = any> {
     /**
      * The response the error was thrown with.
      */
     private response: Partial<Response> & ApiResponse | undefined;
+
+    private body: T | null = null;
 
     public constructor(response: ApiResponse | Error | any) {
         if (response instanceof Error) {
@@ -17,12 +26,14 @@ export default class ErrorHandler {
     /**
      * Get the parsed response body.
      */
-    private async getBody<T>(): Promise<T | null> {
+    public async parseBody(): Promise<T | null> {
         try {
-            return this.response?.json ? await this.response.json() : null;
+            this.body = this.response?.json ? await this.response.json() : null;
         } catch (e: unknown) {
-            return null;
+            this.body = null;
         }
+
+        return this.body;
     }
 
     /**
@@ -35,22 +46,18 @@ export default class ErrorHandler {
     /**
      * Get the main message.
      */
-    public async getErrorMessage(): Promise<string | undefined> {
-        const body = await this.getBody<Record<string, any>>();
-
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        return body?.message;
+    public getErrorMessage(): string | undefined {
+        return (this.body as Record<string, any> | null)?.message;
     }
 
     /**
      * Get the errors or specific error messages.
      */
-    public async getErrors(): Promise<Record<string, string[]> | undefined>;
-    public async getErrors(field: string): Promise<string[] | undefined>;
-    public async getErrors(field?: string): Promise<Record<string, string[]> | string[] | undefined> {
-        const body = await this.getBody<Record<string, any>>();
+    public getErrors(): Record<string, string[]> | undefined;
+    public getErrors(field: string): string[] | undefined;
+    public getErrors(field?: string): Record<string, string[]> | string[] | undefined {
+        const body = this.body as Record<string, any> | null;
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
         if (!body?.errors) {
             return undefined;
         }

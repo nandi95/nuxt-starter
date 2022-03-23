@@ -18,19 +18,19 @@ export default defineNuxtPlugin(async nuxt => {
                 .then(userModel => {
                     isAuthenticated.value = true;
                     user.value = userModel as User;
-                })
-                .catch(async () => {
-                    return User.logout();
                 });
         }
     } else if (isAuthenticated.value) {
-        // if still logged in but token got lost
-        // todo - test this flow
+        // if still logged in but token got lost; try to obtain again
         await new User().setEndpoint('csrf-cookie')
-            .get()
+            .call('get')
             .then(setCookie)
-            .then(async () => await User.current(true));
-        // custom apiResponseHandler handler unauthenticated error
+            // ensure we have the user
+            .then(async () => await User.current(true))
+            .catch(async () => {
+                isAuthenticated.value = false;
+                return User.logout();
+            });
     }
 
     watch(

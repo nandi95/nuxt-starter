@@ -41,7 +41,7 @@ export default class User extends Model {
                     if (!setCookie()) {
                         throw new Error('Unable set cookie.');
                     }
-                });
+                }).catch(console.error);
         }
 
         // log in & create the session

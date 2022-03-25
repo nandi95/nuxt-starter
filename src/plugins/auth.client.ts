@@ -18,6 +18,9 @@ export default defineNuxtPlugin(async nuxt => {
                 .then(userModel => {
                     isAuthenticated.value = true;
                     user.value = userModel as User;
+                })
+                .catch(() => {
+                    document.cookie = '';
                 });
         }
     } else if (isAuthenticated.value) {

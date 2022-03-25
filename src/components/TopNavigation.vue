@@ -1,5 +1,5 @@
 <template>
-    <div class="shadow py-4 bg-gray-200">
+    <div class="shadow py-4 bg-slate-100 dark:bg-gray-500">
         <div class="container">
             <div class="flex justify-between items-center">
                 <Icon name="menu"
@@ -8,22 +8,28 @@
                              hover:bg-gray-300 shadow-none hover:shadow transition"
                       icon-classes="h-6" />
                 <NuxtLink to="/admin">
-                    Navigation
+                    <UIAvatar class="!w-10 !h-10 p-2 !bg-brand-300 dark:!bg-brand-400">
+                        <Logo />
+                    </UIAvatar>
                 </NuxtLink>
 
-                <UIDropdown ref="dropdown" width="auto" style="min-width: max-content">
-                    <template #trigger="{toggle}">
-                        <UIAvatar class="cursor-pointer" :alt="userName" @click.stop="toggle" />
-                    </template>
+                <div class="flex items-center space-x-2">
+                    <ThemeSwitcher />
 
-                    <ul class="rounded bg-white dark:bg-gray-500 divide-y">
-                        <li role="menuitem"
-                            class="py-2 px-4 transition-colors hover:bg-gray-100 dark: hover:bg-gray-600 cursor-pointer"
-                            @click="() => { logout(); $refs.dropdown.hide() }">
-                            Log out
-                        </li>
-                    </ul>
-                </UIDropdown>
+                    <UIDropdown ref="dropdown" width="auto" style="min-width: max-content">
+                        <template #trigger="{toggle}">
+                            <UIAvatar class="cursor-pointer" :alt="userName" @click.stop="toggle" />
+                        </template>
+
+                        <ul class="rounded bg-white dark:bg-gray-500 divide-y">
+                            <li role="menuitem"
+                                class="py-2 px-4 transition-colors hover:bg-gray-100 dark: hover:bg-gray-600 cursor-pointer"
+                                @click="() => { logout(); $refs.dropdown.hide() }">
+                                Log out
+                            </li>
+                        </ul>
+                    </UIDropdown>
+                </div>
             </div>
         </div>
     </div>
@@ -36,11 +42,13 @@ import type { Router } from 'vue-router';
 import { useLoader } from '~/composables';
 import User from '~/upfront/models/User';
 import Icon from '~/components/Icon.vue';
+import ThemeSwitcher from '~/components/ThemeSwitcher.vue';
+import Logo from '~/components/Logo.vue';
 
 export default defineComponent({
     name: 'TopNavigation',
 
-    components: { Icon },
+    components: { Logo, ThemeSwitcher, Icon },
 
     setup: () => {
         const router = useNuxtApp().$router as Router;
@@ -50,11 +58,14 @@ export default defineComponent({
         onMounted(async () => User.current().then(user => userName.value = user!.name));
 
         const logout = async () => {
-            loader.on();
+            loader.value.on();
             return await User.logout()
                 .then(async () => router.push({ path: '/' }))
                 .catch(async () => router.push({ path: '/login' }))
-                .finally(loader.off);
+                .finally(() => {
+                    loader.value.off();
+                    // todo - reset color scheme preferences
+                });
         };
 
         return {

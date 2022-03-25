@@ -14,6 +14,7 @@ export default defineNuxtModule({
                 }
             });
         },
+
         // ensure upfront loaded before auth plugin
         // eslint-disable-next-line @typescript-eslint/naming-convention
         'app:resolve': (app) => {

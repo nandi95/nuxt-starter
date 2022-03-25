@@ -14,11 +14,13 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import type { PropType } from 'vue';
-import { mdiMenu, mdiArrowLeft } from '@mdi/js';
+import { mdiMenu, mdiArrowLeft, mdiWeatherNight, mdiWhiteBalanceSunny } from '@mdi/js';
 
 const icons = {
     menu: mdiMenu,
-    arrowLeft: mdiArrowLeft
+    arrowLeft: mdiArrowLeft,
+    moon: mdiWeatherNight,
+    sun: mdiWhiteBalanceSunny
 } as const;
 
 export default defineComponent({

@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center">
-        <p class="bg-red-400 text-white py-4 px-6 rounded select-none">
+        <p class="bg-slate-300 text-gray-600 dark:bg-slate-700 dark:text-white py-4 px-6 rounded select-none shadow">
             Hello {{ user?.name ?? 'World' }}
         </p>
     </div>

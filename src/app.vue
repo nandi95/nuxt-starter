@@ -9,11 +9,10 @@
 
 <script lang="ts">
 import { defineComponent, provide, ref } from 'vue';
-import { useMeta } from '#meta';
 import meta from '~/composables/meta';
 import Loader from '~/components/Loader.vue';
 import { loaderKey } from '~/composables';
-import { useNuxtApp } from '#app';
+import { useNuxtApp, useHead } from '#app';
 
 export default defineComponent({
     name: 'App',
@@ -21,7 +20,7 @@ export default defineComponent({
     components: { Loader },
 
     setup: () => {
-        useMeta(meta);
+        useHead(meta);
         const loader = ref<InstanceType<typeof Loader>>();
         const nuxtApp = useNuxtApp();
         // @ts-expect-error

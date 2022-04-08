@@ -30,7 +30,7 @@ import Logo from '~/components/Logo.vue';
 export default defineComponent({
     name: 'Index',
 
-    components: { Logo },
+    components: { Logo }
 });
 </script>
 

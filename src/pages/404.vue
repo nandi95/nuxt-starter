@@ -13,7 +13,6 @@
 import { defineComponent } from 'vue';
 import Icon from '~/components/Icon.vue';
 
-// fixme - returns 200 https://github.com/nuxt/framework/discussions/559
 export default defineComponent({
     name: '404',
 

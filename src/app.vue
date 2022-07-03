@@ -1,6 +1,8 @@
 <template>
     <div class="relative w-screen h-screen bg-slate-200 dark:bg-gray-700">
-        <Loader ref="loader" />
+        <ClientOnly>
+            <Loader ref="loader" />
+        </ClientOnly>
         <NuxtLayout>
             <NuxtPage />
         </NuxtLayout>

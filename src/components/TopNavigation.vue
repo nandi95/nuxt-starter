@@ -23,7 +23,8 @@
 
                         <ul class="rounded bg-white dark:bg-gray-500 divide-y">
                             <li role="menuitem"
-                                class="py-2 px-4 transition-colors hover:bg-gray-100 dark: hover:bg-gray-600 cursor-pointer"
+                                class="py-2 px-4 transition-colors hover:bg-gray-100
+                                       dark:hover:bg-gray-600 cursor-pointer"
                                 @click="() => { logout(); $refs.dropdown.hide() }">
                                 Log out
                             </li>

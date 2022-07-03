@@ -4,7 +4,7 @@
             <UIButton v-tooltip.left="'Go to login'"
                       outline
                       class="rounded-full w-10 h-10 relative shadow dark:shadow-lg group"
-                      category="brand">
+                      theme="brand">
                 <Icon name="arrowLeft"
                       class="absolute rotate-180 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]
                              dark:group-hover:text-gray-100 dark:text-gray-300" />
@@ -26,11 +26,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Logo from '~/components/Logo.vue';
+import Icon from '~/components/Icon';
 
 export default defineComponent({
     name: 'Index',
 
-    components: { Logo }
+    components: { Logo, Icon }
 });
 </script>
 

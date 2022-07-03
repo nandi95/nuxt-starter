@@ -12,6 +12,13 @@
     --color-brand-900: 32, 113, 106;
 }
 
+// make break words work as expected
+.break-words {
+    overflow-wrap: anywhere;
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/word-break
+    word-break: normal;
+}
+
 html {
     font-family: proxima-nova, 'Helvetica Neue', 'Lato', Helvetica, Arial, sans-serif;
 }

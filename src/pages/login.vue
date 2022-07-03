@@ -4,7 +4,7 @@
             <UIButton v-tooltip.right="'Go back'"
                       outline
                       class="rounded-full w-10 h-10 relative shadow dark:shadow-lg group"
-                      category="brand">
+                      theme="brand">
                 <Icon name="arrowLeft"
                       class="absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%]
                              dark:group-hover:text-gray-100 dark:text-gray-300" />
@@ -16,7 +16,7 @@
                 <Logo />
             </UIAvatar>
 
-            <UIButton v-if="$isAuthenticated" category="primary" @click="$router.push('/admin')">
+            <UIButton v-if="$isAuthenticated" theme="blue" @click="$router.push('/admin')">
                 Proceed to dashboard
             </UIButton>
             <template v-else>
@@ -40,7 +40,7 @@
                                 name="remember"
                                 class="mb-2 xs:mb-0"
                                 label="Remember me" />
-                    <UIButton category="brand" class="!px-12" @click="login">
+                    <UIButton theme="brand" class="!px-12" @click="login">
                         Log In
                     </UIButton>
                 </div>

@@ -1,9 +1,13 @@
-import { defineNuxtConfig } from 'nuxt3';
+import { defineNuxtConfig } from 'nuxt';
 
 export default defineNuxtConfig({
-    publicRuntimeConfig: {
-        apiUrl: process.env.API_URL
+    runtimeConfig: {
+        public: {
+            apiUrl: process.env.API_URL
+        }
     },
+
+    telemetry: false,
 
     srcDir: 'src',
 

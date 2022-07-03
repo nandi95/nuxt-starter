@@ -1,6 +1,6 @@
 import type { AttributeKeys } from '@upfrontjs/framework';
 import { Model as BaseModel } from '@upfrontjs/framework';
-import { unref } from '@vue/reactivity';
+import { unref } from 'vue';
 
 export default class Model extends BaseModel {
     /**

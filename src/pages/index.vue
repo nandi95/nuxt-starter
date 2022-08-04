@@ -11,7 +11,7 @@
             </UIButton>
         </NuxtLink>
 
-        <div class="p-12 shadow-lg border border-gray-300 card-dark-border rounded">
+        <div class="p-12 shadow-lg border border-gray-300 dark:border-[#343e4d] rounded">
             <UIAvatar class="!w-16 !h-16 bg-brand-200 dark:bg-brand-100 mx-auto mb-6">
                 <Logo />
             </UIAvatar>
@@ -34,9 +34,3 @@ export default defineComponent({
     components: { Logo, Icon }
 });
 </script>
-
-<style>
-.dark .card-dark-border {
-    border-color: #343e4d;
-}
-</style>

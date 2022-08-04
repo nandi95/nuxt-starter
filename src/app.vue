@@ -15,6 +15,7 @@ import meta from '~/composables/meta';
 import Loader from '~/components/Loader.vue';
 import { loaderKey } from '~/composables';
 import { useNuxtApp, useHead } from '#app';
+import type { LoaderMethods } from '~/types';
 
 export default defineComponent({
     name: 'App',
@@ -23,9 +24,8 @@ export default defineComponent({
 
     setup: () => {
         useHead(meta);
-        const loader = ref<InstanceType<typeof Loader>>();
+        const loader = ref<LoaderMethods>();
         const nuxtApp = useNuxtApp();
-        // @ts-expect-error
         provide(loaderKey, loader);
 
         nuxtApp.hook('page:start', () => {

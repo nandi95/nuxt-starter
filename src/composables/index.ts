@@ -7,10 +7,10 @@ import ErrorHandler from '~/utils/ErrorHandler';
 import type { LoaderMethods } from '~/types';
 
 // This in fact returns the instancetype of the Loader component
-export const loaderKey: InjectionKey<Ref<LoaderMethods>> = Symbol('loader');
+export const loaderKey: InjectionKey<Ref<LoaderMethods | undefined>> = Symbol('loader');
 
-export const useLoader = (): Ref<LoaderMethods> | undefined => {
-    return inject(loaderKey);
+export const useLoader = (): Ref<LoaderMethods | undefined> => {
+    return inject(loaderKey)!;
 };
 
 type Environment = 'production' | 'testing' | 'development';

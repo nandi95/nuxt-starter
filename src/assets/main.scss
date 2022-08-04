@@ -59,3 +59,21 @@ body {
 .page-leave-to {
     opacity: 0;
 }
+
+.text-color {
+    @apply text-gray-800;
+}
+
+.text-color-muted {
+    @apply text-gray-500;
+}
+
+.dark {
+    & .text-color {
+        @apply text-gray-200;
+    }
+
+    & .text-color-muted {
+        @apply text-gray-400;
+    }
+}

@@ -70,7 +70,7 @@ export default defineComponent({
         const remember = ref(false);
         const error = ref<string | null>(null);
         const router = useNuxtApp().$router as Router;
-        const loader = useLoader()!;
+        const loader = useLoader();
 
         let initialTarget: RouteLocationNormalized | null | string = localStorage.getItem('initialTarget');
 
@@ -82,7 +82,7 @@ export default defineComponent({
         }
 
         const login = async () => {
-            loader.value.on();
+            loader.value?.on();
             error.value = null;
             await User.login(email.value, password.value, remember.value)
                 .catch(async errorResponse => {
@@ -92,8 +92,9 @@ export default defineComponent({
                         error.value = msg[0];
                     }
                 })
-                .then(async () => router.push(initialTarget ?? { path: 'admin' }))
-                .finally(loader.value.off);
+                .then(async () => router.push(initialTarget ?? { path: 'admin' })
+                    .then(() => localStorage.removeItem('initialTarget')))
+                .finally(loader.value?.off);
         };
 
         watch([email, password], () => {

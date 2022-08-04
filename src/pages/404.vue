@@ -1,8 +1,9 @@
 <template>
-    <div class="text-center pt-6">
+    <div class="text-center pt-6 text-color flex flex-col space-y-2">
         <h1>404</h1>
         <p>The page you were looking for was not found</p>
-        <a class="cursor-pointer hover:text-brand-600 transition-colors flex flex-row justify-center mt-6"
+        <a class="hover:text-brand-600 transition-colors
+                  inline-flex rounded border py-2 px-4"
            @click="$router.back()">
             <Icon name="arrowLeft" /> Go Back
         </a>

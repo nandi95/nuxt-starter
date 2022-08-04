@@ -136,13 +136,19 @@ module.exports = {
         'vue/new-line-between-multi-line-property': 'warn',
         'vue/max-attributes-per-line': [
             'warn', {
-                'singleline': 3,
+                'singleline': {
+                    'max': 3
+                },
                 'multiline': {
-                    'max': 1,
-                    'allowFirstLine': true
+                    'max': 1
                 }
             }
         ],
+        'vue/first-attribute-linebreak': ['warn', {
+            'singleline': 'ignore',
+            'multiline': 'beside'
+        }],
+        'vue/multi-word-component-names': 'off',
         'vue/no-boolean-default': ['error', 'default-false'],
         'vue/no-duplicate-attr-inheritance': 'error',
         'vue/no-empty-component-block': 'warn',

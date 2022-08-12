@@ -11,8 +11,9 @@
             </UIButton>
         </NuxtLink>
 
-        <div class="p-12 shadow-lg border border-gray-300 dark:border-[#343e4d] rounded">
-            <UIAvatar class="!w-16 !h-16 bg-brand-200 dark:bg-brand-100 mx-auto mb-6">
+        <div class="p-12 shadow-lg border border-gray-300 bg-white bg-opacity-60 dark:bg-gray-600
+                    dark:border-[#343e4d] rounded">
+            <UIAvatar class="!w-16 !h-16 !bg-brand-200 mx-auto mb-6">
                 <Logo />
             </UIAvatar>
             <h1 class="text-transparent bg-clip-text bg-gradient-to-tr from-brand-800 to-brand-200 dark:to-brand-100

@@ -28,13 +28,17 @@ export default defineComponent({
         const nuxtApp = useNuxtApp();
         provide(loaderKey, loader);
 
+        let timeout: ReturnType<typeof setTimeout>;
+
         nuxtApp.hook('page:start', () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
-            loader.value?.on();
+            timeout = setTimeout(() => {
+                clearTimeout(timeout);
+                loader.value?.on();
+            }, 50);
         });
 
         nuxtApp.hook('page:finish', () => {
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-call,@typescript-eslint/no-unsafe-member-access
+            clearTimeout(timeout);
             loader.value?.off();
         });
 

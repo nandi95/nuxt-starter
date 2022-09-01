@@ -18,7 +18,7 @@
     },
     "devDependencies": {
         "@mdi/js": "^7.0.96",
-        "@nuxtjs/tailwindcss": "^5.0.0-4",
+        "@nuxtjs/tailwindcss": "^5.3.2",
         "@pinia/nuxt": "^0.3.1",
         "@types/tailwindcss": "^3.0.2",
         "@typescript-eslint/eslint-plugin": "^5.4.0",

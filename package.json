@@ -43,7 +43,7 @@
         "sass-loader": "^13.0.2",
         "start-server-and-test": "^1.12.1",
         "stylelint": "^13.13.1",
-        "vue": "^3.2.31"
+        "vue": "^3.2.38"
     },
     "dependencies": {
         "@karnama/vueish": "^0.17.5",

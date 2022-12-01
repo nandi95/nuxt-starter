@@ -22,7 +22,7 @@
         "@pinia/nuxt": "^0.4.2",
         "@types/tailwindcss": "^3.0.2",
         "@typescript-eslint/eslint-plugin": "^5.4.0",
-        "@typescript-eslint/parser": "^5.4.0",
+        "@typescript-eslint/parser": "^5.45.0",
         "@vue/eslint-config-standard": "^8.0.1",
         "@vue/eslint-config-typescript": "^11.0.0",
         "autoprefixer": "^10.4.0",

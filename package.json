@@ -46,7 +46,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
-        "@karnama/vueish": "^0.19.1",
+        "@karnama/vueish": "^0.22.0",
         "@upfrontjs/framework": "^0.13.0"
     },
     "lint-staged": {

@@ -42,7 +42,7 @@
         "sass": "^1.43.2",
         "sass-loader": "^13.0.2",
         "start-server-and-test": "^2.0.0",
-        "stylelint": "^13.13.1",
+        "stylelint": "^15.3.0",
         "vue": "^3.2.31"
     },
     "dependencies": {
